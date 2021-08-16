@@ -1,0 +1,31 @@
+public class Solution {
+	
+	public static int secondSmallestInteger(int[] array) {
+		// 1. In O(n) time complexity without using sort method
+      int min = Integer.MAX_VALUE;
+      int secondMin=Integer.MAX_VALUE;
+      for(int i=0;i<array.length;i++) {
+        if(min>array[i]) {
+          min = array[i];
+        }
+      }
+      for(int i=0;i<array.length;i++) {
+        if(secondMin>array[i] && array[i]!=min) {
+          secondMin=array[i];
+        }
+      }
+    // 2. In O(n) Time-Complexity with TreeSet
+      TreeSet<Integer> tree = new TreeSet<>();
+      for(int i=0;i<array.length;i++) {
+        tree.add(array[i]);
+      }
+      tree.remove(tree.first());
+      return tree.first();
+    }
+
+    public static void main(String[] args) {
+      int[] array = new int[] {-1,-2,0,1,2,5};
+      System.out.println(secondSmallestInteger(array));
+    }
+
+  }
